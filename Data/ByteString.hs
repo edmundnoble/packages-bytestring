@@ -1573,7 +1573,7 @@ packCString cstr = do
 packCStringLen :: CStringLen -> IO ByteString
 packCStringLen (cstr, len) | len >= 0 = create len $ \p ->
     memcpy p (castPtr cstr) (fromIntegral len)
-packCStringLen (_, len) =
+packCStringLen (!_, len) =
     moduleErrorIO "packCStringLen" ("negative length: " ++ show len)
 
 ------------------------------------------------------------------------
